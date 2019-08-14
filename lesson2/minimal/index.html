@@ -9,9 +9,9 @@
 </head>
 <body>
     <div id="app">
-        <button @click="isVisible = !isVisible">
-            <span v-if="isVisible">Скрыть</span>
-            <span v-if="!isVisible">Показать</span>
+        <button class="btn" @click="isVisible = !isVisible">
+            <span  v-tooltip="tooltipHide" v-if="isVisible">Скрыть</span>
+            <span  v-tooltip="tooltipShow" v-if="!isVisible">Показать</span>
         </button>
         <table v-show="isVisible"  class="table_blur">
             <caption>{{ title }}</caption>
@@ -25,15 +25,17 @@
             <tr v-for="(user, index) in users">
               <td>{{ index + 1 }}</td>
               <td><img :src="user.avatar != '' ? user.avatar : defaultAvatar" :alt="user.avatar != '' ? fullName : 'Заглушка' " /></td>
-              <td>{{ user.firstName }}</td>
-              <td>{{ user.secondName }}</td>
-              <td>{{ user.thirdName }}</td>
+              <td>{{ user.firstName | capitalize }} <button  v-copy="user.firstName">Copy!</button></td>
+              <td>{{ user.secondName | capitalize }}</td>
+              <td>{{ user.thirdName | capitalize }}</td>
             </tr>
           </table>
     </div>
        
     
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/v-tooltip"></script>
+    <script src="https://unpkg.com/v-copy@0.1.0/dist/v-copy.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

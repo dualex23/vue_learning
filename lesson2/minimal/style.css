@@ -1,7 +1,22 @@
+button {
+  outline: none;
+}
+
+#app {
+  width: 60%;
+  margin: 0 auto;
+}
+.btn {
+
+  padding: 5px 15px;
+  border-radius: 25px;
+}
+
 .table_blur {
     background: #f5ffff;
     border-collapse: collapse;
     text-align: left;
+    margin: 0 auto;
   }
   .table_blur th {
     border-top: 1px solid #777777;	
