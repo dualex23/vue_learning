@@ -5,13 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vue Lesson 2</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="app">
-        <h1>{{ title }}</h1>
-        <ul>
-            <li v-for="name in names">{{ name.firstName }}</li>
-        </ul>
+        <button @click="isVisible = !isVisible">
+            <span v-if="isVisible">Скрыть</span>
+            <span v-if="!isVisible">Показать</span>
+        </button>
+        <table v-show="isVisible"  class="table_blur">
+            <caption>{{ title }}</caption>
+            <tr>
+              <th>#</th>
+              <th>Avatar</th>
+              <th>Firstname</th>
+              <th>Secondname</th>
+              <th>Thirdname</th>
+            </tr>
+            <tr v-for="(user, index) in users">
+              <td>{{ index + 1 }}</td>
+              <td><img :src="user.avatar != '' ? user.avatar : defaultAvatar" :alt="user.avatar != '' ? fullName : 'Заглушка' " /></td>
+              <td>{{ user.firstName }}</td>
+              <td>{{ user.secondName }}</td>
+              <td>{{ user.thirdName }}</td>
+            </tr>
+          </table>
     </div>
        
     
