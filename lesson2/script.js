@@ -41,7 +41,7 @@ var app = new Vue({
     el: '#app',
     data: function(){
         return {
-            isVisible: false,
+            tableIsShown: false,
             invisText: '',
             tooltipHide: 'Скрыть список',
             tooltipShow: 'Показать список',
@@ -51,10 +51,7 @@ var app = new Vue({
     },
     computed: {
         showText: function() {
-            return this.isVisible ? 'Скрыть' : 'Показать';
-        },
-        fullName: function() {
-            return this.users.firstName + this.users.secondName;
+            return this.tableIsShown ? 'Скрыть' : 'Показать';
         },
         title: function(){
             return 'Всего человек: ' + this.users.length;
@@ -71,8 +68,11 @@ var app = new Vue({
         return this.users = users;
     },
     methods: {
-        visibility: function() {
-            return this.isVisible = !this.isVisible;
+        tableVisibility: function() {
+            return this.tableIsShown = !this.tableIsShown;
+        },
+        fullName: function(user) {
+            return user.firstName + ' ' + user.secondName;
         }
     }
     
