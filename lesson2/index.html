@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="app">
-        <button class="btn" @click="isVisible = !isVisible">
-            <span  v-tooltip="tooltipHide" v-if="isVisible">Скрыть</span>
-            <span  v-tooltip="tooltipShow" v-if="!isVisible">Показать</span>
+    <div id="app" v-cloak>
+        <button class="btn" @click="visibility">
+            <span v-tooltip="tooltipHide">{{ showText }}</span>
         </button>
-        <table v-show="isVisible"  class="table_blur">
+
+        <table v-if="isVisible"  class="table_blur">
             <caption>{{ title }}</caption>
             <tr>
               <th>#</th>
@@ -22,7 +22,7 @@
               <th>Secondname</th>
               <th>Thirdname</th>
             </tr>
-            <tr v-for="(user, index) in users">
+            <tr v-for="(user, index) in users" :key="user.id">
               <td>{{ index + 1 }}</td>
               <td><img :src="user.avatar != '' ? user.avatar : defaultAvatar" :alt="user.avatar != '' ? fullName : 'Заглушка' " /></td>
               <td>{{ user.firstName | capitalize }} <button  v-copy="user.firstName">Copy!</button></td>

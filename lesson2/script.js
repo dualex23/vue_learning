@@ -1,32 +1,35 @@
 
-Vue.directive('tooltip', VTooltip.VTooltip);
-
 var users = [
     {
+        id: 0,
         firstName: "Александр",
         secondName: "Македонский",
         thirdName: "Цезаревич",
         avatar: "http://nice-avatar.ucoz.ru/_ph/4/2/933339845.png"
     },
     {
+        id: 1,
         firstName: "Максим",
         secondName: "Авросский",
         thirdName: "Наимович",
         avatar: ""
     },
     {
+        id: 2,
         firstName: "Платон",
         secondName: "Планетный",
         thirdName: "Меркурович",
         avatar: "https://s017.radikal.ru/i427/1303/35/85bea17b0018.gif"
     },
     {
+        id: 3,
         firstName: "Карл",
         secondName: "Фиджеральд",
         thirdName: "Карлович",
         avatar: ""
     },
     {
+        id: 4,
         firstName: "Морис",
         secondName: "Бирюза",
         thirdName: "Агапович",
@@ -39,28 +42,38 @@ var app = new Vue({
     data: function(){
         return {
             isVisible: false,
+            invisText: '',
             tooltipHide: 'Скрыть список',
             tooltipShow: 'Показать список',
-            users: users,
+            users: [],
             defaultAvatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaUD8jlvVjouynDln66CRBRL-ecagVV5I3xhRBXJweSU_1iyYLTw'
         }
     },
     computed: {
-        fullName() {
+        showText: function() {
+            return this.isVisible ? 'Скрыть' : 'Показать';
+        },
+        fullName: function() {
             return this.users.firstName + this.users.secondName;
         },
-        title(){
+        title: function(){
             return 'Всего человек: ' + this.users.length;
-        },
-        ava(user){
-            return user.avatar != '' ? user.avatar : defaultAvatar;
         }
     },
     filters: {
         capitalize: function (value) {
-          if (!value) return ''
-          value = value.toString()
-          return value.charAt(0).toUpperCase() + value.slice(1)
+            if (!value) return ''
+            value = value.toString()
+            return value.charAt(0).toUpperCase() + value.slice(1)
         }
-      }
+    },
+    mounted: function() {
+        return this.users = users;
+    },
+    methods: {
+        visibility: function() {
+            return this.isVisible = !this.isVisible;
+        }
+    }
+    
 });
