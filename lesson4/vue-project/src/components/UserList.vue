@@ -50,7 +50,7 @@ export default {
     },
     methods: {
         fullName(user) {
-            return user.firstName + ' ' + user.secondName;
+            return user.firstName + ' ' + user.lastName;
         }
     }
 }

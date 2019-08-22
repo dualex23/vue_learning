@@ -4,7 +4,7 @@
 
         <form>
             
-            <div class="input-group mb-3" v-for="(key, value) in user">
+            <div class="input-group mb-3" v-for="(key, value) in list[0]" :key="key.id">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">{{value}}</span>
                 </div>
@@ -17,15 +17,15 @@
 
 <script>
 export default {
+    props: {
+        list: {
+            type: Array,
+            required: true
+        }
+    },
     data: function(){
         return {
-            user: {
-                id: 1,
-                firstName: "Александр",
-                secondName: "Дудинский",
-                middleName: "Александрович",
-                avatar: "http://nice-avatar.ucoz.ru/_ph/4/2/933339845.png" 
-            }
+            
         }
     }
 }
